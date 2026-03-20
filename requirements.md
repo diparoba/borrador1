@@ -1,59 +1,56 @@
-# Documento de Requerimientos de Software (SRS)
-## Proyecto: RBE (Riesgos Biológicos Ecuador)
+# Documento de Requerimientos de Software - Proyecto RBE
 
-**Fecha de Creación:** Marzo 2026
-**Público Objetivo:** Estudiantes, investigadores y profesionales de ciencias biomédicas.
+## 1. Información General
+* **Nombre del Proyecto:** RBE (Riesgos Biológicos Ecuador)
+* **Público Objetivo:** Estudiantes de ciencias biomédicas, investigadores y autoridades de salud.
+* **Plataformas:** Aplicación Web Responsiva (Desktop y Mobile).
 
----
+## 2. Resumen del Sistema
+RBE es una plataforma integral diseñada para la visualización y análisis de riesgos biológicos en Ecuador. Combina datos geoespaciales, indicadores demográficos y visión artificial para identificar amenazas biológicas (flora/fauna) y epidemiológicas, integrando fuentes validadas por centros de investigación y hospitales.
 
-## 1. Descripción General del Producto
-RBE (Riesgos Biológicos Ecuador) es una plataforma web responsiva diseñada para centralizar, visualizar y analizar datos epidemiológicos, demográficos y de riesgos biológicos a nivel nacional. La herramienta integra visualización geoespacial interactiva con capacidades de visión artificial para la identificación de especies que representan amenazas biológicas o ecológicas.
-
-## 2. Pila Tecnológica (Tech Stack)
-* **Backend:** Python con framework **FastAPI** (recomendado para alto rendimiento y manejo asíncrono de modelos de IA).
-* **Frontend:** JavaScript (ES6+) con la librería **React.js** bajo el framework **Next.js**.
-* **Visualización Geoespacial:** Leaflet.js.
-* **Visualización de Datos (Gráficos):** Recharts.
-* **Estilos:** CSS (pudiendo integrar módulos de CSS o TailwindCSS para agilizar el diseño responsivo).
-* **Plataforma:** Web App (Responsive/Mobile-First) accesible desde navegadores de escritorio y dispositivos móviles.
-
-## 3. Arquitectura de la Base de Datos
-La base de datos estará estructurada en los siguientes dominios principales:
-1.  **Datos Territoriales:** Almacenamiento de coordenadas, polígonos y límites geográficos de las provincias y ciudades del Ecuador.
-2.  **Indicadores Bio-Demográficos:** Registros actualizables de población, tasas de natalidad, tasas de mortalidad y factores ambientales (como la altitud).
-3.  **Repositorio de Riesgos y Epidemiología:** Trazabilidad histórica de amenazas biológicas, estadísticas hospitalarias (promedio de pacientes) y series de tiempo para comparaciones.
-4.  **Catálogo de Especies:** Registro técnico de flora y fauna, incluyendo indicadores de impacto ecológico, peligrosidad (directa o como especie invasora) y georreferenciación.
-*Nota de Integridad:* Todos los registros incluirán metadatos de "Validación de Origen" y "Persistencia Histórica".
+## 3. Arquitectura Tecnológica Propuesta
+* **Backend:** Python con **FastAPI**.
+* **Frontend:** **Next.js** (React) + Tailwind CSS.
+* **Base de Datos:** **PostgreSQL** con extensión **PostGIS** para datos geográficos.
+* **IA/Visión:** OpenCV / TensorFlow Lite (para identificación de especies).
 
 ## 4. Módulos del Sistema
 
-### 4.1. Módulo de Visualización Geoespacial (Mapa Interactivo)
-* Despliegue de un mapa interactivo del Ecuador utilizando Leaflet.js.
-* **Funcionalidad *Hover*:** Al posicionar el cursor sobre una ciudad o región, se desplegará un *tooltip* o tarjeta flotante con información demográfica general: altura, número de habitantes, tasa de natalidad y tasa de mortalidad.
-* **Funcionalidad *On-Click*:** Al hacer clic en una ubicación, se abrirá un panel detallado (modal o pestaña lateral).
+### Módulo 1: Visualización Geoespacial (Mapa Interactivo)
+* Visualización del mapa del Ecuador con navegación fluida.
+* **Interacción Hover:** Al posicionar el mouse sobre una ciudad/provincia, mostrar:
+    * Altura sobre el nivel del mar.
+    * Población total.
+    * Tasas de natalidad y mortalidad.
+* **Selección de Región:** Apertura de panel lateral/pestaña con detalles profundos.
 
-### 4.2. Módulo Epidemiológico y de Riesgos
-* Se activa al interactuar con una región específica en el mapa.
-* Muestra información de infraestructura (cantidad de hospitales, promedio de pacientes diarios).
-* **Enfoque Principal:** Despliegue de los riesgos biológicos específicos de la zona, detallando:
-    * Causas y consecuencias.
-    * Datos demográficos de las poblaciones más afectadas.
-    * Visualización de datos comparativos históricos mediante gráficos (utilizando Recharts).
+### Módulo 2: Inteligencia Biológica (Visión Artificial)
+* Captura de imagen vía cámara en vivo o carga de captura de pantalla.
+* Identificación de especies (insectos y plantas).
+* **Análisis de Riesgo:** Clasificación según peligrosidad directa e impacto como especie invasora en el ecosistema local.
 
-### 4.3. Módulo de Inteligencia Biológica (Visión Artificial)
-* Interfaz para cargar imágenes (mediante captura de pantalla en escritorio o uso de la cámara del celular).
-* Procesamiento de la imagen para identificar especies (plantas o insectos).
-* Retorno de información básica de la especie identificada.
-* Sistema de alertas visuales que resalte si la especie representa un peligro para la población (toxicidad, transmisión de vectores) o si es una especie invasora que afecta a la biodiversidad local.
+### Módulo 3: Epidemiológico y de Riesgos
+* Despliegue de riesgos biológicos específicos por zona.
+* Análisis de causas y consecuencias.
+* **Estadísticas Hospitalarias:** Cantidad de centros de salud y promedio de pacientes diarios.
+* **Análisis Histórico:** Comparativa de cifras actuales vs. años anteriores para trazabilidad de brotes.
 
-### 4.4. Módulo de Gestión de Fuentes y Validación
-* Toda la información estadística, epidemiológica y biológica mostrada en la plataforma debe estar vinculada a una fuente de datos estructurada.
-* Sistema de metadatos que asegure que la información ha sido previamente confirmada y validada.
-* Visualización pública y permanente en la interfaz (UI) de la **fecha y hora de la última actualización** de los datos mostrados.
+### Módulo 4: Gestión de Fuentes y Validación
+* Sistema de registro de bibliografía y fuentes oficiales.
+* Etiquetado de información "Verificada y Validada".
+* Indicador visible de "Última actualización" con fecha y hora exacta.
 
-### 4.5. Módulo de Colaboración Institucional
-* Arquitectura preparada para la integración de datos provenientes de centros de investigación y hospitales colaboradores.
-* Endpoints seguros en la API (Backend) para permitir la ingesta y actualización constante de cifras por parte de estas entidades autorizadas.
+### Módulo 5: Colaboración Institucional
+* Panel de administración para centros de investigación y hospitales asociados.
+* API de actualización de datos en tiempo real para cifras de pacientes y riesgos emergentes.
 
----
-*Fin del Documento de Requerimientos.*
+## 5. Requerimientos de Datos (Modelo de Datos)
+1.  **Datos Territoriales:** Capas GeoJSON con límites provinciales y cantonales de Ecuador.
+2.  **Indicadores Bio-Demográficos:** Tablas de registros del INEC/Ministerio de Salud.
+3.  **Repositorio Epidemiológico:** Histórico de enfermedades infectocontagiosas y zoonosis.
+4.  **Catálogo de Especies:** Base de datos taxonómica con descripciones de impacto ecológico.
+
+## 6. Requerimientos No Funcionales
+* **Simplicidad:** Interfaz limpia pero con profundidad técnica.
+* **Disponibilidad:** Acceso multiplataforma (Web y Móvil).
+* **Integridad:** Toda información debe poseer una fuente verificable.
