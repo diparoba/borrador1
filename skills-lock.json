@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "brainstorming": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "computedHash": "f483c304fcde060211ffae00f49bb728536e7e7613c99db45b5b924d9fc17243"
+    },
+    "fastapi-templates": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "computedHash": "1a5fe66bd2683afd1db9afdf37a25cd8b9195c369c98489333badf0406fc91b3"
+    },
+    "interface-design": {
+      "source": "dammyjay93/interface-design",
+      "sourceType": "github",
+      "computedHash": "4d5fe1dacfebc0c1b3837b061405150ed2e4971c096543afc46c23161c5a4f7a"
+    },
+    "postgresql-best-practices": {
+      "source": "mindrally/skills",
+      "sourceType": "github",
+      "computedHash": "d32a9114bc974c965308108be7a41d9da4cddd037d5941b96611cce63064f7ea"
+    }
+  }
+}
